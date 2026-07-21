@@ -1,24 +1,3 @@
-"""
-Luna — a multi-obfuscator Lua deobfuscation Discord bot.
-
-Luna wraps existing, public deobfuscation tools (starting with
-LuraphDeobfuscator) behind a single Discord bot. Each obfuscator is a
-plugin under deobfuscators/; add new ones there without touching this file.
-
-SETUP
------
-1. pip install -r requirements.txt
-2. Install Java 8+ (needed by the underlying jars) and make sure `java` is on PATH.
-3. Put the jar(s) for each obfuscator's tool under ./jars/ (or set the
-   *_JAR_PATH env vars — see deobfuscators/luraph.py).
-4. Set DISCORD_BOT_TOKEN.
-5. Run: python luna_bot.py
-
-USAGE (in Discord)
--------------------
-/deobfuscate obfuscator:Luraph file:<upload>
-"""
-
 import os
 import tempfile
 
