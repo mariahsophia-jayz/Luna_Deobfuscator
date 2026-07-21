@@ -1,9 +1,9 @@
-from .luraph import LuraphDeobfuscator
+from .prometheus import PrometheusDeobfuscator, MoonSecDeobfuscator
 from .coming_soon import make_coming_soon
 
 REGISTRY = {
-    "luraph": LuraphDeobfuscator(),
-    "prometheus": make_coming_soon("Prometheus")(),
+    "prometheus": PrometheusDeobfuscator(),
+    "moonsec": MoonSecDeobfuscator(),
+    "luraph": make_coming_soon("Luraph")(),
     "moonveil": make_coming_soon("Moonveil")(),
-    "moonsec": make_coming_soon("MoonSec")(),
 }
