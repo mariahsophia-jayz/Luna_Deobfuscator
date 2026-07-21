@@ -1,8 +1,7 @@
 FROM python:3.11-slim
 
-# Java is needed to run the underlying deobfuscator jars
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends default-jre-headless && \
+    apt-get install -y --no-install-recommends git && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -10,11 +9,11 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# jars/LuraphDeobfuscator.jar and jars/unluac.jar must already exist in the
-# repo — download them yourself and commit them.
 COPY . .
 
-ENV LURAPH_JAR_PATH=/app/jars/LuraphDeobfuscator.jar
-ENV UNLUAC_JAR_PATH=/app/jars/unluac.jar
+RUN git clone --depth 1 https://github.com/0x251/Prometheus-Deobfuscator.git tools/prometheus-deobfuscator && \
+    pip install --no-cache-dir -r tools/prometheus-deobfuscator/requirements.txt
+
+ENV PROMETHEUS_TOOL_DIR=/app/tools/prometheus-deobfuscator
 
 CMD ["python", "luna_bot.py"]
